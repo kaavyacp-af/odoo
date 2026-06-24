@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'Tourism Management',
-    'depends': ['base', 'sale', 'fleet'], # Removed website dependency entirely!
+    'depends': ['base', 'sale', 'fleet'], 
     'application': True,
     'data': [
         "views/tourism_package_views.xml",

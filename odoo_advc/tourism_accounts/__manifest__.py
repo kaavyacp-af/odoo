@@ -1,8 +1,8 @@
 {
-    "name": "Real Estate Accounting",
+    "name": "Tourism Accounting",
     "depends": ["tourism", "account"],
     "application": True,
     "data" : [
-        "views/estate_property_views.xml"
+        "views/tourism_booking_account_views.xml"
     ]
 }
