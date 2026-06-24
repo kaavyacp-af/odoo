@@ -1,14 +1,15 @@
 {
-    'name':'Real Estate',
-    'depends':['base', 'mail'],
+    'name':'Tourism Management',
+    'depends':['base', 'sale', 'fleet', 'website'],
     'application':True,
     'data' : [
-        "views/estate_property_views.xml",
-        "views/estate_property_offer_views.xml",
-        "views/estate_property_type_views.xml",
-        "views/estate_property_tag_views.xml",
-        "views/estate_menus.xml",
+        "views/tourism_package_views.xml",
+        "views/tourism_booking_views.xml",
+        "views/tourism_package_type_views.xml",
+        "views/tourism_package_tag_views.xml",
+        "views/tourism_menus.xml",
         "views/res_users_views.xml",
-        "security/ir.model.access.csv"
+        "security/ir.model.access.csv",
+        "views/tourism_package_templates.xml"
     ]
 }
