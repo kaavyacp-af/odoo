@@ -12004,7 +12004,7 @@ msgstr ""
 
 #. module: base
 #: model:ir.model.fields,help:base.field_ir_actions_act_window__view_mode
-msgid "Comma-separated list of allowed view modes, such as 'form', 'tree', 'calendar', etc. (Default: tree,form)"
+msgid "Comma-separated list of allowed view modes, such as 'form', 'tree', 'calendar', etc. (Default: list,form)"
 msgstr ""
 
 #. module: base

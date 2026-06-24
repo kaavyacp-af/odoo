@@ -61940,7 +61940,7 @@ msgstr "يجب أن تكون قيمة “%(attribute)s” عدداً صحيحا�
 
 #~ msgid ""
 #~ "Comma-separated list of allowed view modes, such as 'form', 'tree', "
-#~ "'calendar', etc. (Default: tree,form)"
+#~ "'calendar', etc. (Default: list,form)"
 #~ msgstr ""
 #~ "قائمة تُفصل عناصرها بفواصل تحتوي على طرق العرض المسموح بها. مثال: "
 #~ "'استمارة'، 'شجرة'، 'تقويم'، إلخ. (القيمة الافتراضية: شجرة، استمارة) "

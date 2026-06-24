@@ -7,14 +7,14 @@
             <xpath expr="//notebook" position="inside">
                 <page string="Assigned Tour Bookings" groups="base.group_no_one">
                     <field name="tour_booking_ids" readonly="1">
-                        <tree>
+                        <list>
                             <field name="name" string="Booking Ref"/>
                             <field name="contact_name"/>
                             <field name="booking_date"/>
                             <field name="group_size"/>
                             <field name="total_amount"/>
                             <field name="state" widget="badge"/>
-                        </tree>
+                        </list>
                     </field>
                 </page>
             </xpath>

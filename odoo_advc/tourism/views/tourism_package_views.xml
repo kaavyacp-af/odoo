@@ -1,60 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<odoo>
-    <record id="tourism_package_view_form" model="ir.ui.view">
-        <field name="name">tourism.package.form</field>
-        <field name="model">tourism.package</field>
-        <field name="arch" type="xml">
-            <form>
-                <sheet>
-                    <field name="image_1920" widget="image" class="oe_avatar"/>
-                    <div class="oe_title">
-                        <h1><field name="name" placeholder="e.g., Luxury Dubai City Tour"/></h1>
-                        <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
-                    </div>
-                    <group>
-                        <group>
-                            <field name="package_type_id"/>
-                            <field name="duration_days"/>
-                            <field name="base_price"/>
-                        </group>
-                        <group>
-                            <field name="hotel_star_rating"/>
-                            <field name="boarding_type"/>
-                            <field name="active" widget="boolean_toggle"/>
-                        </group>
-                    </group>
-                    <notebook>
-                        <page string="Daily Itinerary">
-                            <field name="itinerary_day_ids">
-                                <tree editable="bottom">
-                                    <field name="day_number"/>
-                                    <field name="title"/>
-                                    <field name="narrative"/>
-                                    <field name="is_veg_friendly" widget="boolean_toggle"/>
-                                </tree>
-                            </field>
-                        </page>
-                    </notebook>
-                </sheet>
-            </form>
-        </field>
-    </record>
-
-    <record id="tourism_package_view_tree" model="ir.ui.view">
-        <field name="name">tourism.package.tree</field>
-        <field name="model">tourism.package</field>
-        <field name="arch" type="xml">
-            <tree>
-                <field name="name"/>
-                <field name="package_type_id"/>
-                <field name="duration_days"/>
-                <field name="hotel_star_rating"/>
-                <field name="base_price"/>
-            </tree>
-        </field>
-    </record>
-
-    <record id="tourism_package_view_kanban" model="ir.ui.view">
+<record id="tourism_package_view_kanban" model="ir.ui.view">
         <field name="name">tourism.package.kanban</field>
         <field name="model">tourism.package</field>
         <field name="arch" type="xml">
@@ -68,8 +12,8 @@
                 <field name="tag_ids"/>
                 
                 <templates>
-                    <t t-name="kanban-box">
-                        <div class="oe_kanban_global_click card shadow-sm border-0 m-2" style="width: 100%; border-radius: 8px; overflow: hidden;">
+                    <t t-name="card">
+                        <div class="oe_kanban_global_click border-0 m-0 p-0" style="width: 100%; border-radius: 8px; overflow: hidden;">
                             
                             <div class="position-relative" style="height: 140px; background: #f8f9fa;">
                                 <t t-if="record.image_1920.raw_value">
@@ -100,36 +44,15 @@
                                 </div>
 
                                 <div class="d-flex align-items-center justify-content-between mt-2 pt-2 border-top">
-                                    <span class="text-uppercase text-muted font-weight-bold" style="font-size: 0.75rem; tracking-wider">Base Cost</span>
+                                    <span class="text-uppercase text-muted font-weight-bold" style="font-size: 0.75rem;">Base Cost</span>
                                     <span class="text-primary fw-bold fs-5">
                                         AED <field name="base_price"/>
                                     </span>
                                 </div>
                             </div>
-
                         </div>
                     </t>
                 </templates>
             </kanban>
         </field>
     </record>
-
-    <record id="tourism_package_action" model="ir.actions.act_window">
-        <field name="name">Dubai Packages Catalog</field>
-        <field name="res_model">tourism.package</field>
-        <field name="view_mode">kanban,tree,form</field>
-        <field name="help" type="html">
-            <p class="o_view_nocontent_smiling_face">
-                No Dubai Tour templates compiled yet!
-            </p><p>
-                Click Create to define a package layout with rates, meals, hotel tiers, and itineraries.
-            </p>
-        </field>
-    </record>
-
-    <menuitem id="menu_tourism_package"
-              name="Dubai Packages"
-              parent="menu_tourism_configuration_parent"
-              action="tourism_package_action"
-              sequence="1"/>
-</odoo>

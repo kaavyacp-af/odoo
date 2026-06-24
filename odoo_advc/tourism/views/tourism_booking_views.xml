@@ -79,12 +79,12 @@
         </field>
     </record>
 
-    <!-- TREE VIEW: Main Operational Ledger -->
-    <record id="tourism_booking_view_tree" model="ir.ui.view">
-        <field name="name">tourism.booking.tree</field>
+    <!-- LIST VIEW: Main Operational Ledger -->
+    <record id="tourism_booking_view_list" model="ir.ui.view">
+        <field name="name">tourism.booking.list</field>
         <field name="model">tourism.booking</field>
         <field name="arch" type="xml">
-            <tree decoration-info="state == 'draft'" decoration-success="state == 'confirmed'" decoration-muted="state == 'cancelled'">
+            <list decoration-info="state == 'draft'" decoration-success="state == 'confirmed'" decoration-muted="state == 'cancelled'">
                 <field name="name" string="Folder ID"/>
                 <field name="contact_name"/>
                 <field name="whatsapp_number"/>
@@ -94,7 +94,7 @@
                 <field name="transport_type" string="Logistics Routing"/>
                 <field name="total_amount" sum="Total Gross Revenue Pool"/>
                 <field name="state" widget="badge" decoration-info="state == 'draft'" decoration-success="state == 'confirmed'"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -102,7 +102,7 @@
     <record id="tourism_booking_action" model="ir.actions.act_window">
         <field name="name">Agent Bookings Desk</field>
         <field name="res_model">tourism.booking</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
                 Initiate a new client booking file!
@@ -113,9 +113,9 @@
     </record>
 
     <!-- MENU ITEM: Links our pipeline into the Operations Main Header -->
-    <menuitem id="menu_tourism_booking"
-              name="Customer Bookings"
-              parent="menu_tourism_bookings_parent"
-              action="tourism_booking_action"
-              sequence="1"/>
+    <menuitem id="menu_tourism_booking" 
+          name="Customer Bookings" 
+          parent="menu_tourism_bookings_parent" 
+          action="tourism_booking_action" 
+          sequence="1"/>
 </odoo>
