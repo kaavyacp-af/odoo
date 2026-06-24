@@ -25,40 +25,51 @@
     </record>
 
     <record id="tourism_package_view_form" model="ir.ui.view">
-        <field name="name">tourism.package.form</field>
-        <field name="model">tourism.package</field>
-        <field name="arch" type="xml">
-            <form>
-                <sheet>
-                    <field name="image_1920" widget="image" class="oe_avatar"/>
-                    <group>
-                        <group>
-                            <field name="name"/>
-                            <field name="package_type_id"/>
-                        </group>
-                        <group>
-                            <field name="hotel_star_rating"/>
-                            <field name="boarding_type"/>
-                            <field name="base_price"/>
-                            <field name="duration_days"/>
-                        </group>
+    <field name="name">tourism.package.form</field>
+    <field name="model">tourism.package</field>
+    <field name="arch" type="xml">
+        <form>
+            <sheet>
+                <field name="image_1920" widget="image" class="oe_avatar"/>
+                
+                <group>
+                    <group string="Package Details">
+                        <field name="name"/>
+                        <field name="package_type_id" options="{'no_create': True}"/>
+                        <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color', 'no_create_edit': True}"/>
+                        <field name="hotel_star_rating"/>
+                        <field name="boarding_type"/>
                     </group>
-                    <notebook>
-                        <page string="Itinerary Timeline">
-                            <field name="itinerary_day_ids">
-                                <list editable="bottom">
-                                    <field name="day_number"/>
-                                    <field name="title"/>
-                                    <field name="narrative"/>
-                                    <field name="is_veg_friendly"/>
-                                </list>
-                            </field>
-                        </page>
-                    </notebook>
-                </sheet>
-            </form>
-        </field>
-    </record>
+                    
+                    <group string="Booking Information">
+                        <label for="date_start" string="Travel Range"/>
+                        <div class="o_row">
+                            <field name="date_start"/> to <field name="date_end"/>
+                        </div>
+                        <field name="passenger_count"/>
+                        <field name="contact_phone" widget="phone"/>
+                        <field name="contact_email" widget="email"/>
+                        <field name="base_price"/>
+                        <field name="duration_days"/>
+                    </group>
+                </group>
+
+                <notebook>
+                    <page string="Itinerary Timeline">
+                        <field name="itinerary_day_ids">
+                            <list editable="bottom">
+                                <field name="day_number"/>
+                                <field name="title"/>
+                                <field name="narrative"/>
+                                <field name="is_veg_friendly"/>
+                            </list>
+                        </field>
+                    </page>
+                </notebook>
+            </sheet>
+        </form>
+    </field>
+</record>
 
     <record id="tourism_package_view_kanban" model="ir.ui.view">
         <field name="name">tourism.package.kanban</field>
