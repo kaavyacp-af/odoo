@@ -5,19 +5,16 @@ class TourismPackage(models.Model):
     _description = "Tourism Package Template"
     _order = "id desc"
 
-    name = fields.Char(string="Package Name", required=True)
+    name = fields.Char(string="Package Name", required=True, translate=True)
     description = fields.Text(string="Overview")
     active = fields.Boolean(string="Active", default=True)
     
-    # Pricing & Duration Setup
     base_price = fields.Float(string="Base Price (AED)", required=True, default=100.0)
     duration_days = fields.Integer(string="Duration (Days)", default=1, required=True)
     
-    # Custom Relational Categories
-    package_type_id = fields.Many2one("tourism.package.type", string="Package Type")
+    package_type_id = fields.Many2one("tourism.package.type", string="Package Type", ondelete='set null')
     tag_ids = fields.Many2many("tourism.package.tag", string="Marketing Badges")
     
-    # Hotel & Dining Matrix Configurations 
     hotel_star_rating = fields.Selection([
         ('3', '3-Star Budget Properties'),
         ('4', '4-Star Premium Selections'),
@@ -29,24 +26,29 @@ class TourismPackage(models.Model):
         ('full', 'Full-Board (All 3 Meals Included)')
     ], string="Boarding Criteria", default='half', required=True)
     
-    # Sequential Day Itinerary Multi-line Mapping
+    # Odoo 19 Tip: Use 'inverse_name' consistently and add index=True for performance
     itinerary_day_ids = fields.One2many(
         "tourism.package.day", 
         "package_id", 
         string="Day-by-Day Progression Timeline"
     )
 
-    # Basic UI visual field for the frontend cards framework
-    image_1920 = fields.Binary(string="Package Cover Image Attachment")
-
+    image_1920 = fields.Image(string="Package Cover Image", max_width=1920, max_height=1920)
 
 class TourismPackageDay(models.Model):
     _name = "tourism.package.day"
     _description = "Tourism Package Day Schedule"
-    _order = "day_number"
+    _order = "day_number, id" # Ordering by day_number is key for progression
 
-    package_id = fields.Many2one("tourism.package", string="Parent Package Link", ondelete="cascade")
+    # Odoo 19 Tip: Always index your Many2one fields for faster SQL joins
+    package_id = fields.Many2one(
+        "tourism.package", 
+        string="Parent Package Link", 
+        ondelete="cascade", 
+        index=True, 
+        required=True
+    )
     day_number = fields.Integer(string="Day Number", default=1, required=True)
-    title = fields.Char(string="Daily Milestone Title", required=True, placeholder="e.g., Desert Safari & BBQ Dinner")
-    narrative = fields.Text(string="Activity Details & Scheduling Directions")
-    is_veg_friendly = fields.Boolean(string="Vegetarian Culinary Flag", default=False)
+    title = fields.Char(string="Daily Milestone Title", required=True)
+    narrative = fields.Text(string="Activity Details")
+    is_veg_friendly = fields.Boolean(string="Vegetarian Friendly", default=False)
