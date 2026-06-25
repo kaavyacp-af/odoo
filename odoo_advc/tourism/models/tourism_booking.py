@@ -51,12 +51,12 @@ class TourismBooking(models.Model):
         ('cancelled', 'Cancelled')
     ], string="Pipeline Status", default='draft', required=True, tracking=True)
 
-    @api.model
-    def create(self, vals):
-        """ Assigns an agent sequence number when a new booking file is initiated """
-        if vals.get('name', 'NEW') == 'NEW':
-            vals['name'] = self.env['ir.sequence'].next_by_code('tourism.booking') or 'T-BOOK'
-        return super(TourismBooking, self).create(vals)
+    @api.model_create_multi
+    def create(self, vals_list):  
+        for vals in vals_list:
+            if vals.get('name', 'NEW') == 'NEW':
+                vals['name'] = self.env['ir.sequence'].next_by_code('tourism.booking') or 'NEW'
+        return super(TourismBooking, self).create(vals_list)
 
     @api.depends('group_size')
     def _compute_transport_routing(self):
